@@ -12,23 +12,26 @@ const PlugAuth = () => {
 
 	// PLUG TO WALLET
 	const plug = async () => {
-		const connect = await window.ic.plug.requestConnect({ whitelist, host });
-		// status
-		const connectionsStatus = await window.ic.plug.isConnected();
-		setIsConnected(connectionsStatus);
+		const connect = await window.ic.plug.requestConnect({
+			// whitelist,
+			host,
+		});
+
+		// const connection = connect ? "allowed" : "denied";
+		// console.log(`The Connection was ${connection}!`);
+
+		// connection state
+		const connectionsState = await window.ic.plug.isConnected();
+		setIsConnected(connectionsState);
 
 		// request balance
 		setLoading(true);
 		const getBalance = await window.ic.plug.requestBalance();
 		setBalance(getBalance);
-		console.log(getBalance);
 		setLoading(false);
-
-		const connectionState = connect ? "allowed" : "denied";
-		console.log(`The Connection was ${connectionState}!`);
 	};
 
-	// autoconnect after page load
+	// request connection on page load
 	// useEffect(() => {
 	// 	if (!isConnected) {
 	// 		plug();
@@ -38,13 +41,33 @@ const PlugAuth = () => {
 	return (
 		<div className={css.plug}>
 			<button onClick={plug}>Connect to Plug</button>
-			<p>Connect to plug to get your wallet data</p>
+			<p className={css.plug__hint}>Connect to plug to get your wallet data</p>
 			<h4>Plug data</h4>
-			<p>Connection state: {isConnected ? "true" : "false"}</p>
-			<p>ICP Balance: {!balance || loading ? "Fetching..." : balance[0].amount}</p>
-			<p>XTC Balance: {!balance || loading ? "Fetching..." : balance[1].amount}</p>
-			<p>Canister Id: {!balance || loading ? "Fetching..." : balance[0].canisterId}</p>
-			{console.log(!balance || loading ? null : balance[0].amount)}
+			<div className={css.plug__data}>
+				<p>Connection state: {isConnected ? "true" : "false"}</p>
+				<p>
+					ICP balance:{" "}
+					{!loading && !balance
+						? "..."
+						: loading
+						? "Fetching..."
+						: balance
+						? balance[0].amount
+						: null}{" "}
+					ICP
+				</p>
+				<p>
+					XTC balance:{" "}
+					{!loading && !balance
+						? "..."
+						: loading
+						? "Fetching..."
+						: balance
+						? balance[1].amount
+						: null}{" "}
+					XTC
+				</p>
+			</div>
 		</div>
 	);
 };

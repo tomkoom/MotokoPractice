@@ -1,12 +1,52 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,400;0,600;0,800;1,400&display=swap"); */
+
+:root {
+	/* FLUENT UI https://developer.microsoft.com/en-us/fluentui#/styles/web/colors/neutrals */
+
+	/* COLORS */
+	--blueGray900: #263238;
+	--blueGray800: #37474f;
+	--blueGray700: #455a64;
+	--blueGray600: #546e7a;
+	--blueGray500: #607d8b;
+	--blueGray400: #78909c;
+	--blueGray300: #90a4ae;
+	--blueGray200: #b0bec5;
+	--blueGray100: #cfd8dc;
+	--blueGray50: #eceff1;
+
+	/* FONT SIZE */
+	--fontSize1: 3.052rem;
+	--fontSize2: 2.441rem;
+	--fontSize3: 1.953rem;
+	--fontSize4: 1.563rem;
+	--fontSize5: 1.25rem;
+	--fontSize6: 1rem;
+	--fontSize7: 0.8rem;
+
+	/* FONT WEIGHT */
+	--black: 800;
+	--bold: 600;
+	--medium: 400;
+	--light: 300;
+}
+
+/* MAIN */
+
 * {
 	box-sizing: border-box;
-	margin: 0;
 	padding: 0;
+	margin: 0;
+	font-family: "Inter", sans-serif;
+}
+
+html {
+	font-size: 16px; /* Root font size */
 }
 
 body {
-	font-family: sans-serif;
-	font-size: 1.5rem;
+	color: var(--blueGray900);
 }
 
 .center {
