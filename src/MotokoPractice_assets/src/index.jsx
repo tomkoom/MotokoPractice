@@ -1,11 +1,12 @@
 import React from "react";
 import { render } from "react-dom";
 import { MotokoPractice } from "../../declarations/MotokoPractice";
+import App from "./App";
 
 const Index = () => {
 	return (
 		<div>
-			<p>123</p>
+			<App MotokoPractice={MotokoPractice} />
 		</div>
 	);
 };

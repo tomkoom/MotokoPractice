@@ -75,7 +75,28 @@ module.exports = {
   module: {
     rules: [
       { test: /\.(ts|tsx|jsx)$/, loader: "ts-loader" },
-      { test: /\.css$/, use: ['style-loader', 'css-loader'] }
+      // { test: /\.css$/, use: ['style-loader', 'css-loader'] },
+      // CSS MODULES
+      {
+        test: /\.css$/,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 1,
+              modules: true,
+            },
+          },
+        ],
+        include: /\.module\.css$/,
+      },
+      // CSS
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
+        exclude: /\.module\.css$/,
+      },
     ]
   },
   plugins: [
